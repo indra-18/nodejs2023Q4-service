@@ -1,0 +1,35 @@
+{
+  "name": "nodejs2023q4-service",
+  "version": "1.0.0",
+  "description": "A Home Library Service! Users can create, read, update, delete data about Artists, Tracks and Albums, add them to Favorites in their own Home Library!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indra-18/nodejs2023Q4-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indra-18/nodejs2023Q4-service/issues"
+  },
+  "homepage": "https://github.com/indra-18/nodejs2023Q4-service#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {}
+}
