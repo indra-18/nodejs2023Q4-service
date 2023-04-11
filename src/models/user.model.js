@@ -50,4 +50,3 @@ userSchema.method("toJSON", function() {
 
 const UserModel = mongoose.model(process.env.COLLECTION_NAME, userSchema)
 module.exports = UserModel;
-console.log(process.env.COLLECTION_NAME)
