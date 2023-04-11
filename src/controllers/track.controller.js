@@ -36,7 +36,10 @@ exports.postTrack = async function (req, res) {
     try {
         var newTrack = new TrackCollection({
             id: v4(),
-            ...req.body
+            name: req.body.name,
+            artistId: req.body.artistId,
+            albumId:req.body.albumId,
+            duration:req.body.duration
         })
 
         newTrack = await newTrack.save();
