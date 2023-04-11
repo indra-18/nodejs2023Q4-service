@@ -1,5 +1,5 @@
 
-const UserModel = require('../models/user.model')
+const UserCollection = require('../models/user.model')
 // const { uuid } = require('uuidv4')
 // console.log(v4())
 const { v4, validate } = require('uuid')
@@ -9,7 +9,7 @@ var exports = module.exports = {};
 
 exports.getAllUsers = async function (req, res) {
     try {
-        const allUsers = await UserModel.find()
+        const allUsers = await UserCollection.find()
         if (allUsers.length === 0) {
             return res.status(201).json({message: 'Users List is Empty'})
         }
@@ -25,7 +25,7 @@ exports.getUserWithId = async function (req, res) {
         return res.status(400).json({message: 'Provide Valid ID'})
     }
     try {
-        const user = await UserModel.findById({id : req.params.id})
+        const user = await UserCollection.findById({id : req.params.id})
         res.status(200).json({message: 'User Found', data: user})
     }
     catch (err) {
@@ -42,7 +42,7 @@ exports.postUser = async function (req, res) {
         const salt = await bcrypt.genSaltSync(10)
         const hashedPassword = await bcrypt.hashSync(password, salt)
         // console.log(hashedPassword)
-        var newUser = new UserModel({
+        var newUser = new UserCollection({
             id: v4(),
             login: req.body.login,
             password: hashedPassword
@@ -63,7 +63,7 @@ exports.updateUserWithId = async function (req, res) {
     try {
         var oldPassword = req.params.oldPassword
         var newPassword = req.params.newPassword;
-        const user = await UserModel.findById(id)
+        const user = await UserCollection.findById(id)
         if (!user) {
             res.status(404).json({message: `No User Found With ID: ${id}`})
         }
@@ -71,7 +71,7 @@ exports.updateUserWithId = async function (req, res) {
         var isMatched = await bcrypt.compareSync(oldPassword, hashedPassword);
         if (isMatched) {
             newHashPassword = await bcrypt.hashSync(newPassword, 8)
-            // const updatedUser = await UserModel.findByIdAndUpdate({id}, req.body)
+            // const updatedUser = await UserCollection.findByIdAndUpdate({id}, req.body)
             user.password = newHashPassword
             res.status(200).json({message: 'Updated User Details', data: user})
         }
@@ -89,8 +89,8 @@ exports.deleteUserWithId = async function (req, res) {
         return res.status(400).json({message: 'Provide Valid ID'})
     }
     try {
-        const deletedUser = await UserModel.findByIdAndRemove({id})
-        res.status(204).json({message: 'Updated User Details', data: deletedUser})
+        await UserCollection.findByIdAndRemove({id})
+        res.status(204).json({message: 'Updated User Details'})
     }
     catch (err) {
         res.status(404).json({message: `No User Found With ID: ${id}`})
