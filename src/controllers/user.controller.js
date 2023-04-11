@@ -90,7 +90,7 @@ exports.deleteUserWithId = async function (req, res) {
     }
     try {
         await UserCollection.findByIdAndRemove({id})
-        res.status(204).json({message: 'Updated User Details'})
+        res.status(204).json({message: 'Deleted User'})
     }
     catch (err) {
         res.status(404).json({message: `No User Found With ID: ${id}`})

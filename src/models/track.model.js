@@ -7,8 +7,10 @@ const artistSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    grammy: Boolean
+    artistId: String,
+    albumId: String,
+    duration: Number,
 })
 
-const ArtistModel = mongoose.model('artists', artistSchema)
-module.exports = ArtistModel
+const TrackModel = mongoose.model('tracks', artistSchema)
+module.exports = TrackModel

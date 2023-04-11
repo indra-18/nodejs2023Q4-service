@@ -44,7 +44,7 @@ exports.postArtist = async function (req, res) {
         res.status(201).json({message: 'New Artist Added', data: newArtist})
     }
     catch(err) {
-        res.status(500).json({message: `Error While Adding New User ${err.message}`})
+        res.status(500).json({message: `Error While Adding New Artist ${err.message}`})
     }  
 }
 exports.updateArtistWithId = async function (req, res) {
@@ -54,7 +54,7 @@ exports.updateArtistWithId = async function (req, res) {
     }
     try {
         const updatedArtist = await ArtistCollection.findByIdAndUpdate({id}, req.body)
-        res.status(200).json({message: 'Updated User Details', data: updatedArtist})
+        res.status(200).json({message: 'Updated Artist Details', data: updatedArtist})
 
     }
     catch (err) {
@@ -68,7 +68,7 @@ exports.deleteArtistWithId = async function (req, res) {
     }
     try {
         await ArtistCollection.findByIdAndRemove({id})
-        res.status(204).json({message: 'Updated User Details'})
+        res.status(204).json({message: 'Deleted Artist'})
     }
     catch (err) {
         res.status(404).json({message: `No Artist Found With ID: ${id}`})
